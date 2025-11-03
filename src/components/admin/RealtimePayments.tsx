@@ -4,7 +4,7 @@ import { paths } from "@/config/paths";
 import { useNavigate } from "react-router-dom";
 
 export default function RealtimePayments() {
-  const { paymentRecords, isPending, error } = useGetPaymentRecords();
+  const { paymentRecords } = useGetPaymentRecords();
   const navigate = useNavigate();
   return (
     <div className="space-y-4">
@@ -18,7 +18,7 @@ export default function RealtimePayments() {
         <table className="min-w-full text-sm">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left">Digest</th>
+              <th className="px-4 py-2 text-left">ID</th>
               <th className="px-4 py-2 text-left">Currency</th>
               <th className="px-4 py-2 text-left">Amount</th>
               <th className="px-4 py-2 text-left">Status</th>
@@ -28,10 +28,10 @@ export default function RealtimePayments() {
           <tbody>
             {paymentRecords.map((p) => (
               <tr
-                key={p.digest}
+                key={p.id}
                 className="border-t"
                 onClick={() => {
-                  navigate(paths.admin.payment.getHref(p.digest));
+                  navigate(paths.admin.payment.getHref(p.id));
                 }}
               >
                 <td className="px-4 py-2 font-mono text-xs text-gray-600">

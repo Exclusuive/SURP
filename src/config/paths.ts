@@ -4,10 +4,8 @@ export const paths = {
     getHref: () => "/admin",
     payment: {
       path: "/admin/payment",
-      getHref: (digest?: string) =>
-        `/admin/payment${
-          digest ? `?digest=${encodeURIComponent(digest)}` : ""
-        }`,
+      getHref: (id?: string) =>
+        `/admin/payment${id ? `?id=${encodeURIComponent(id)}` : ""}`,
     },
   },
   user: {

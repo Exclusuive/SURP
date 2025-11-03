@@ -1,54 +1,27 @@
-import { useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  formatAmount,
-  formatTimestamp,
-  toNumberOrUndefined,
-} from "@/lib/utils";
+import { formatAmount, formatTimestamp } from "@/lib/utils";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
-
-type PaymentType = "Registry" | "Ephemeral";
-
-type PaymentDetailData = {
-  paymentType: PaymentType;
-  nonce: string;
-  amount: number;
-  receiver: string;
-  coinType: string;
-  timestampMs: number;
-};
+import { useGetPaymentDetail } from "@/hooks/getData/useGetPaymentDetail";
 
 export default function PaymentDetail() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
-
-  const data: Partial<PaymentDetailData> = useMemo(() => {
-    const paymentTypeParam = params.get("paymentType");
-    const paymentType =
-      paymentTypeParam === "Registry" || paymentTypeParam === "Ephemeral"
-        ? paymentTypeParam
-        : undefined;
-
-    return {
-      paymentType,
-      nonce: params.get("nonce") ?? undefined,
-      amount: toNumberOrUndefined(params.get("amount")),
-      receiver: params.get("receiver") ?? undefined,
-      coinType: params.get("coinType") ?? undefined,
-      timestampMs: toNumberOrUndefined(params.get("timestampMs")),
-    };
-  }, [params]);
+  const { paymentDetail } = useGetPaymentDetail({
+    objectId: params.get("id") ?? "",
+  });
 
   return (
     <AdminLayout>
       <div className="mx-auto w-full max-w-3xl p-4">
-        <div className="mb-4 flex items-center gap-3">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h1 className="text-xl font-semibold">Payement Detail</h1>
+          <div className="flex-1" />
+
           <Button variant="ghost" onClick={() => navigate(-1)}>
             ← Back
           </Button>
-          <h1 className="text-xl font-semibold">Payement Detail</h1>
         </div>
 
         <Card>
@@ -60,42 +33,42 @@ export default function PaymentDetail() {
               <div className="rounded-md border p-4">
                 <dt className="text-sm text-muted-foreground">결제 타입</dt>
                 <dd className="mt-1 text-base font-medium">
-                  {data.paymentType ?? "—"}
+                  {paymentDetail?.paymentType ?? "—"}
+                </dd>
+              </div>
+
+              <div className="rounded-md border p-4 sm:col-span-2">
+                <dt className="text-sm text-muted-foreground">발신자</dt>
+                <dd className="mt-1 break-all text-base font-medium">
+                  {paymentDetail?.sender ?? "—"}
+                </dd>
+              </div>
+              <div className="rounded-md border p-4 sm:col-span-2">
+                <dt className="text-sm text-muted-foreground">수신자</dt>
+                <dd className="mt-1 break-all text-base font-medium">
+                  {paymentDetail?.receiver ?? "—"}
                 </dd>
               </div>
 
               <div className="rounded-md border p-4 sm:col-span-2">
                 <dt className="text-sm text-muted-foreground">Nonce</dt>
                 <dd className="mt-1 break-all text-base font-medium">
-                  {data.nonce ?? "—"}
+                  {paymentDetail?.nonce ?? "—"}
                 </dd>
               </div>
 
               <div className="rounded-md border p-4">
                 <dt className="text-sm text-muted-foreground">금액</dt>
                 <dd className="mt-1 text-base font-medium">
-                  {formatAmount(data.amount)}
-                </dd>
-              </div>
-
-              <div className="rounded-md border p-4">
-                <dt className="text-sm text-muted-foreground">수신자</dt>
-                <dd className="mt-1 break-all text-base font-medium">
-                  {data.receiver ?? "—"}
-                </dd>
-              </div>
-
-              <div className="rounded-md border p-4">
-                <dt className="text-sm text-muted-foreground">코인 타입</dt>
-                <dd className="mt-1 break-all text-base font-medium">
-                  {data.coinType ?? "—"}
+                  {formatAmount(paymentDetail?.amount ?? 0)}{" "}
+                  {paymentDetail?.coinType ?? "—"}
                 </dd>
               </div>
 
               <div className="rounded-md border p-4">
                 <dt className="text-sm text-muted-foreground">생성 시각</dt>
                 <dd className="mt-1 text-base font-medium">
-                  {formatTimestamp(data.timestampMs)}
+                  {formatTimestamp(Number(paymentDetail?.timestampMs) ?? 0)}
                 </dd>
               </div>
             </dl>

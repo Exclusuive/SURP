@@ -13,6 +13,7 @@ export function parsePaymentRecords(paymentRecords: any[]) {
     } else {
       amount = paymentRecord.name.value.payment_amount / 10 ** 6;
     }
+    console.log("paymentRecord", paymentRecord);
     return {
       digest: paymentRecord.digest,
       id: paymentRecord.objectId,
