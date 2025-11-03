@@ -17,7 +17,6 @@ export function useGetPaymentRecords() {
       setIsPending(false);
       return;
     }
-    console.log("data", data);
     const parsedPaymentRecords = parsePaymentRecords(data.data);
     setPaymentRecords(parsedPaymentRecords);
   }, [data]);

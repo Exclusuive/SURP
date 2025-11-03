@@ -1,15 +1,17 @@
 import { useGetPaymentRecords } from "@/hooks/getData/useGetPaymentRecords";
 import { Button } from "../ui/button";
+import { paths } from "@/config/paths";
+import { useNavigate } from "react-router-dom";
 
 export default function RealtimePayments() {
   const { paymentRecords, isPending, error } = useGetPaymentRecords();
-
+  const navigate = useNavigate();
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Payment Records</h2>
         <span className="text-sm text-gray-500">
-          최근 {paymentRecords.length}건
+          Recent {paymentRecords.length} records
         </span>
       </div>
       <div className="overflow-hidden rounded border border-gray-200">
@@ -25,7 +27,13 @@ export default function RealtimePayments() {
           </thead>
           <tbody>
             {paymentRecords.map((p) => (
-              <tr key={p.digest} className="border-t">
+              <tr
+                key={p.digest}
+                className="border-t"
+                onClick={() => {
+                  navigate(paths.admin.payment.getHref(p.digest));
+                }}
+              >
                 <td className="px-4 py-2 font-mono text-xs text-gray-600">
                   {p.digest}
                 </td>
