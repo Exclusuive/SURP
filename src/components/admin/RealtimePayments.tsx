@@ -35,7 +35,7 @@ export default function RealtimePayments() {
                 }}
               >
                 <td className="px-4 py-2 font-mono text-xs text-gray-600">
-                  {p.digest}
+                  {p.id}
                 </td>
                 <td className="px-4 py-2">{p.currency}</td>
                 <td className="px-4 py-2">
