@@ -1,7 +1,9 @@
 export const paths = {
   admin: {
-    path: "/admin",
-    getHref: () => "/admin",
+    dashboard: {
+      path: "/admin",
+      getHref: () => "/admin",
+    },
     payment: {
       path: "/admin/payment",
       getHref: (id?: string) =>

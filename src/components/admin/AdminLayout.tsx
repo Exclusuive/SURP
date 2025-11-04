@@ -19,7 +19,13 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             className="w-full text-left px-4 py-3 hover:bg-gray-800"
             onClick={() => navigate("/admin")}
           >
-            Real-time Payment Records
+            Dashboard
+          </button>
+          <button
+            className="w-full text-left px-4 py-3 hover:bg-gray-800"
+            onClick={() => navigate("/admin/payment")}
+          >
+            Payment Records
           </button>
         </nav>
         <div className="px-4 py-3 text-xs text-gray-400 border-t border-gray-800">
