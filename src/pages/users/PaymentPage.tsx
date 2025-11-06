@@ -42,23 +42,23 @@ export default function PaymentPage() {
     <div className="mx-auto max-w-md space-y-6 px-6 pt-6">
       <Card>
         <CardHeader>
-          <CardTitle>결제 테스트 페이지</CardTitle>
-          <CardDescription>아래 금액으로 결제를 진행합니다.</CardDescription>
+          <CardTitle>Payment Test Page</CardTitle>
+          <CardDescription>Proceed with the amount below.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="space-y-2">
-              <label className="text-sm text-gray-600">결제 금액</label>
+              <label className="text-sm text-gray-600">Amount</label>
               <Input
                 type="number"
                 min={0}
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                placeholder="금액을 입력하세요"
+                placeholder="Enter amount"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-gray-600">결제 종류</label>
+              <label className="text-sm text-gray-600">Currency</label>
               <Select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as "USDC" | "SUI")}
@@ -71,15 +71,15 @@ export default function PaymentPage() {
         </CardContent>
         <CardFooter>
           <Button className="w-full" onClick={() => setOpen(true)}>
-            결제하기
+            Pay
           </Button>
         </CardFooter>
       </Card>
-
+      {/* 
       <div>
         <div className="flex flex-col space-y-1.5 px-6 pb-6">
           <h3 className="text-lg font-semibold leading-none">
-            테스트 토큰 받기
+            Get Test Tokens
           </h3>
         </div>
         <div className="p-6 pt-0">
@@ -104,7 +104,7 @@ export default function PaymentPage() {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <PaymentMethodModal
         open={open}

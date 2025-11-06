@@ -16,7 +16,7 @@ export default function PaymentDetail() {
     <AdminLayout>
       <div className="mx-auto w-full max-w-3xl p-4">
         <div className="mb-4 flex items-center justify-between gap-3">
-          <h1 className="text-xl font-semibold">Payement Detail</h1>
+          <h1 className="text-xl font-semibold">Payment Detail</h1>
           <div className="flex-1" />
 
           <Button variant="ghost" onClick={() => navigate(-1)}>
@@ -26,25 +26,25 @@ export default function PaymentDetail() {
 
         <Card>
           <CardHeader>
-            <CardTitle>결제 상세</CardTitle>
+            <CardTitle>Payment Details</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6">
               <div className="rounded-md border p-4">
-                <dt className="text-sm text-muted-foreground">결제 타입</dt>
+                <dt className="text-sm text-muted-foreground">Payment Type</dt>
                 <dd className="mt-1 text-base font-medium">
                   {paymentDetail?.paymentType ?? "—"}
                 </dd>
               </div>
 
               <div className="rounded-md border p-4 sm:col-span-2">
-                <dt className="text-sm text-muted-foreground">발신자</dt>
+                <dt className="text-sm text-muted-foreground">Sender</dt>
                 <dd className="mt-1 break-all text-base font-medium">
                   {paymentDetail?.sender ?? "—"}
                 </dd>
               </div>
               <div className="rounded-md border p-4 sm:col-span-2">
-                <dt className="text-sm text-muted-foreground">수신자</dt>
+                <dt className="text-sm text-muted-foreground">Receiver</dt>
                 <dd className="mt-1 break-all text-base font-medium">
                   {paymentDetail?.receiver ?? "—"}
                 </dd>
@@ -58,7 +58,7 @@ export default function PaymentDetail() {
               </div>
 
               <div className="rounded-md border p-4">
-                <dt className="text-sm text-muted-foreground">금액</dt>
+                <dt className="text-sm text-muted-foreground">Amount</dt>
                 <dd className="mt-1 text-base font-medium">
                   {formatAmount(paymentDetail?.amount ?? 0)}{" "}
                   {paymentDetail?.coinType ?? "—"}
@@ -66,7 +66,7 @@ export default function PaymentDetail() {
               </div>
 
               <div className="rounded-md border p-4">
-                <dt className="text-sm text-muted-foreground">생성 시각</dt>
+                <dt className="text-sm text-muted-foreground">Created At</dt>
                 <dd className="mt-1 text-base font-medium">
                   {formatTimestamp(Number(paymentDetail?.timestampMs) ?? 0)}
                 </dd>

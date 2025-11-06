@@ -45,9 +45,9 @@ export default function PaymentMethodModal({
       />
       <div className="relative z-10 w-full max-w-sm rounded-lg border border-gray-200 bg-white p-5 shadow-xl">
         <div className="mb-4">
-          <h2 className="text-lg font-semibold">결제 방법 선택</h2>
+          <h2 className="text-lg font-semibold">Select Payment Method</h2>
           <p className="mt-1 text-sm text-gray-600">
-            결제 금액 {amount} {currency}
+            Payment amount {amount} {currency}
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function PaymentMethodModal({
             className="text-sm text-gray-600 underline-offset-4 hover:underline"
             onClick={onClose}
           >
-            취소
+            Cancel
           </button>
         </div>
       </div>

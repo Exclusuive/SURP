@@ -3,11 +3,11 @@ import { Button } from "../ui/button";
 import { paths } from "@/config/paths";
 import { useNavigate } from "react-router-dom";
 
-export default function RealtimePayments() {
+export default function PaymentRecords() {
   const { paymentRecords } = useGetPaymentRecords();
   const navigate = useNavigate();
   return (
-    <div className="space-y-4">
+    <div className="mx-auto w-full max-w-7xl p-6 space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Payment Records</h2>
         <span className="text-sm text-gray-500">
